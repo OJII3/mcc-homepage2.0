@@ -2,8 +2,8 @@
   position: fixed;
   z-index: -1;
   width: 100%;
-  height: 100svh;
-  background-image: url('/tuat-gate.webp');
+  height: 100vh;
+  background-image: url('/tuat-gate-filtered.webp');
   background-size: cover;
 }
 
