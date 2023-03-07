@@ -2,8 +2,6 @@ import { readdirSync, readFileSync } from 'fs';
 
 import matter from 'gray-matter';
 
-import { markdownToHtml } from './markdown-to-html';
-
 import { MetaData } from '~/types/meta';
 import { imgsrc } from '~/utils/imgsrc';
 
@@ -42,8 +40,8 @@ export const Collector = (group: Group) => {
 	try {
 		const slugs = readdirSync(`${articlesDirName}/${group}`);
 		const articles: Article[] = [];
-    
-    for (const slug of slugs) {
+
+		for (const slug of slugs) {
 			const article = structuredClone(dummyArticle);
 			const files = readdirSync(`${articlesDirName}/${group}/${slug}`);
 
@@ -59,9 +57,8 @@ export const Collector = (group: Group) => {
 				article.markdown = content as string;
 
 				if (article.meta.img) article.meta.img = imgsrc(article.meta.img, group, slug);
-				article.html = markdownToHtml(article.markdown);
 
-        articles.push(article);
+				articles.push(article);
 			}
 		}
 
