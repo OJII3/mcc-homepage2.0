@@ -11,10 +11,7 @@ body,
   background: transparent;
   text-size-adjust: none;
   scroll-snap-type: y mandatory;
-}
-
-html {
-  scrollbar-gutter: stable;
+  scroll-behavior: smooth;
 }
 
 a {
