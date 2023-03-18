@@ -3,19 +3,19 @@ import { FC, useEffect, useRef } from 'react';
 
 import styles from './style.module.css';
 
-import { SEO }  from '~/features/SEO';
-import {Carousel} from '~/features/ui/Carousel';
-import {  TextLink } from '~/features/ui/Elements';
-import { Footer } from '~/features/ui/Footer';
-import { Navbar } from '~/features/ui/Navbar';
-import { PageTransition } from '~/features/ui/PageTransition';
+import { SEO }  from '~/components/SEO';
+import {Carousel} from '~/components/ui/Carousel';
+import {  TextLink } from '~/components/ui/Elements';
+import { Footer } from '~/components/ui/Footer';
+import { Navbar } from '~/components/ui/Navbar';
+import { PageTransition } from '~/components/ui/PageTransition';
 import { MetaData } from '~/types/meta';
-import classNames from '~/utils/classNames';
+import { classNames } from '~/utils/classNames';
 
 const meta: MetaData = {
   title: 'About Us',
   description: 'About MCC',
-  img: '/mcc-logo.svg',
+  img: '/images/mcc-logo.svg',
 };
 
 const AboutPage: FC = () => {
@@ -24,7 +24,7 @@ const AboutPage: FC = () => {
   useEffect(() => {
       const timeout = setTimeout(() => {
         ref.current?.scrollIntoView({ behavior: 'smooth' });
-    }, 2000);
+    }, 1500);
     return () => clearTimeout(timeout);
   }, []);
 
@@ -72,13 +72,13 @@ const AboutPage: FC = () => {
         <div className={styles.carousel}>
           <Carousel components={[
             <div key="a" className={styles.carouselItem}>
-              <Image src="/abstract-tech-image-4.webp" alt="MCC" width={300} height={300} />
+              <Image src="/images/abstract-tech-image-4.webp" alt="MCC" width={300} height={300} />
             </div>,
             <div key="b" className={styles.carouselItem}>
-              <Image src="/abstract-tech-image-5.webp" alt="MCC" width={300} height={300} />
+              <Image src="/images/abstract-tech-image-5.webp" alt="MCC" width={300} height={300} />
             </div>,
             <div key="c" className={styles.carouselItem}>
-              <Image src="/abstract-tech-image-6.webp" alt="MCC" width={300} height={300} />
+              <Image src="/images/abstract-tech-image-6.webp" alt="MCC" width={300} height={300} />
             </div>,
           ]} />
         </div>

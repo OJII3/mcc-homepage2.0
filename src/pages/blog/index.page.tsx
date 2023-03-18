@@ -5,13 +5,12 @@ import { FC } from 'react';
 
 import styles from './style.module.css';
 
-import { SEO } from '~/features/SEO';
-import { Article, Collector } from '~/features/markdown-content/collector';
-import { Footer } from '~/features/ui/Footer';
-import { Navbar } from '~/features/ui/Navbar';
-import { PageTransition } from '~/features/ui/PageTransition';
+import { SEO } from '~/components/SEO';
+import { Article, Collector } from '~/components/markdown-content/collector';
+import { Footer } from '~/components/ui/Footer';
+import { Navbar } from '~/components/ui/Navbar';
+import { PageTransition } from '~/components/ui/PageTransition';
 import { MetaData } from '~/types/meta';
-import classNames from '~/utils/classNames';
 
 const meta: MetaData = {
 	title: 'Blog',
@@ -27,7 +26,7 @@ const BlogListPage: FC<{ articles: Article[] }> = ({ articles }) => {
 			<PageTransition>
 				<Image
 					alt=""
-					src="/abstract-tech-image-6.webp"
+					src="/images/abstract-tech-image-6.webp"
 					width={1000}
 					height={500}
 					role="presentation"
@@ -44,32 +43,26 @@ const BlogListPage: FC<{ articles: Article[] }> = ({ articles }) => {
 						<div className={styles.list}>
 							{articles.map((article, _index) => {
 								return (
-									<Link href={`${article.targetPath}`} key={article.slug} className={classNames(styles.listItem)}>
-										{article.meta.img ? (
-											<Image
-												className={styles.image}
-												src={article.meta.img}
-												alt={article.meta.title}
-												width={350}
-												height={200}
-												onError={(e) => {
-													e.currentTarget.src = '/mcc-design.webp';
-												}}
-											/>
-										) : (
-											<Image
-												className={styles.image}
-												src="/mcc-design.webp"
-												alt={article.meta.title}
-												width={350}
-												height={200}
-											/>
-										)}
+									<Link href={article.targetPath} key={article.slug} className={styles.listItem}>
+										<Image
+											className={styles.image}
+											src={article.meta.img || '/images/mcc-design.webp'}
+											alt={article.meta.title}
+											width={350}
+											height={200}
+											onError={(e) => {
+												e.currentTarget.src = '/images/mcc-design.webp';
+											}}
+										/>
 										<div className={styles.text}>
 											<h2 className={styles.title}>{article.meta.title}</h2>
 											<div className={styles.details}>
-												{article.meta.date && <div className={styles.date}>{article.meta.date}</div>}
-												{article.meta.author && <div className={styles.author}>@ {article.meta.author}</div>}
+												{article.meta.date && (
+													<div className={styles.date}>{article.meta.date}</div>
+												)}
+												{article.meta.author && (
+													<div className={styles.author}>@ {article.meta.author}</div>
+												)}
 											</div>
 										</div>
 									</Link>
