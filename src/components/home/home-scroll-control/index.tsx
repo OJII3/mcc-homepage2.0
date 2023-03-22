@@ -1,3 +1,5 @@
+'use client';
+
 import { Preload, ScrollControls, Scroll, useScroll, Image as ImageImpl } from '@react-three/drei';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import Link from 'next/link';
@@ -5,7 +7,6 @@ import { FC, Suspense, useEffect, useState } from 'react';
 
 import styles from './style.module.css';
 
-import { useMediaQuery } from '~/components/MediaQuery';
 import { GitHubIcon, TwitterIcon } from '~/components/ui/Svg';
 import { ROUTES } from '~/routes/base';
 import { classNames } from '~/utils/classNames';
@@ -76,15 +77,7 @@ const Images: FC = () => {
 	);
 };
 
-type HtmlProps = {
-	mediaQuery: {
-		isMobile: boolean;
-		orientation: 'portrait' | 'landscape';
-	};
-};
-
-const Html: FC<HtmlProps> = ({ mediaQuery }) => {
-	const { isMobile } = mediaQuery;
+const Html: FC = () => {
 	const data = useScroll();
 	const vH = window.innerHeight; // viewport height
 	const [opacities, setOpacities] = useState<number[]>([]);
@@ -178,23 +171,20 @@ const Html: FC<HtmlProps> = ({ mediaQuery }) => {
 						</a>
 					</div>
 				</div>
-				{!isMobile && (
-					<div className={styles.twitterWrapper}>
-						<a
-							className={classNames('twitter-timeline', styles.twitterTimeLine)}
-							href="https://twitter.com/TUATMCC?ref_src=twsrc%5Etfw&lang=en"
-						>
-							Tweets by TUATMCC
-						</a>
-					</div>
-				)}
+				<div className={styles.twitterWrapper}>
+					<a
+						className={classNames('twitter-timeline', styles.twitterTimeLine)}
+						href="https://twitter.com/TUATMCC?ref_src=twsrc%5Etfw&lang=en"
+					>
+						Tweets by TUATMCC
+					</a>
+				</div>
 			</div>
 		</>
 	);
 };
 
 export const HomeScrollControl: FC = () => {
-	const mediaQuery = useMediaQuery();
 	useEffect(() => {
 		const script = document.createElement('script');
 		script.src = 'https://platform.twitter.com/widgets.js';
@@ -209,7 +199,7 @@ export const HomeScrollControl: FC = () => {
 						<Images />
 					</Scroll>
 					<Scroll html>
-						<Html mediaQuery={mediaQuery} />
+						<Html />
 					</Scroll>
 				</ScrollControls>
 				<Preload />

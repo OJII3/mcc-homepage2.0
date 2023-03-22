@@ -33,6 +33,7 @@
       gap: 4px;
       align-items: center;
       justify-content: center;
+      min-width: 64px;
       font-family: var(--font-family-orbitron);
       font-size: 12px;
       color: white;
