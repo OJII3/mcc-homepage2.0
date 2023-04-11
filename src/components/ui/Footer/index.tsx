@@ -1,14 +1,13 @@
-import Link from 'next/link';
 import { FC } from 'react';
-
-import { GitHubIcon } from '../Svg/GithubIcon';
-import { TwitterIcon } from '../Svg/TwitterIcon';
-import { WordmarkLogo } from '../Svg/WordmarkLogo';
 
 import styles from './style.module.css';
 
-import { ROUTES } from '~/routes/base';
-import { classNames } from '~/utils/classNames';
+import { BasicLink } from '~/components/ui/BasicLink';
+import { GitHubIcon } from '~/components/ui/Svg/GithubIcon';
+import { TwitterIcon } from '~/components/ui/Svg/TwitterIcon';
+import { WordmarkLogo } from '~/components/ui/Svg/WordmarkLogo';
+import { ROUTES } from '~/constants/routes';
+import { classNames } from '~/libs/classNames';
 
 type FotterProps = {
 	semitransparent?: boolean;
@@ -18,9 +17,9 @@ export const Footer: FC<FotterProps> = ({ semitransparent = false }) => {
 	return (
 		<footer>
 			<div className={classNames(styles.footer, semitransparent && styles._semitransparent)}>
-				<Link href={ROUTES.HOME.PATH} className={styles.wordmarkLogo}>
+				<BasicLink href={ROUTES.HOME.PATH} className={styles.wordmarkLogo}>
 					<WordmarkLogo size={32} />
-				</Link>
+				</BasicLink>
 				<div className={styles.socials}>
 					<a
 						href="https://twitter.com/TUATMCC"
@@ -55,7 +54,6 @@ export const Footer: FC<FotterProps> = ({ semitransparent = false }) => {
 				</div>
 				<div className={styles.copyRight}>©2023 東京農工大学マイクロコンピュータークラブ</div>
 			</div>
-			<div className={styles.copyRight}>©2023 東京農工大学マイクロコンピュータークラブ</div>
 		</footer>
 	);
 };

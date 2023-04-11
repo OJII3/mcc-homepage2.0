@@ -1,12 +1,12 @@
 'use client';
 
-import { FC, ReactNode, useState, useCallback, useEffect } from 'react';
+import { FC, ReactNode, useCallback, useEffect, useState } from 'react';
 
 import styles from './style.module.css';
 
 import { LeftArrow } from '~/components/ui/Svg/LeftArrow';
 import { RightArrow } from '~/components/ui/Svg/RightArrow';
-import { classNames } from '~/utils/classNames';
+import { classNames } from '~/libs/classNames';
 
 export type CarouselProps = {
 	components: ReactNode[];

@@ -23,6 +23,7 @@ export type Blog = {
   body: Markdown
   slug: string
   rootPath: string
+  dateStr: string
 }
 
 export type Members = {
@@ -40,6 +41,7 @@ export type Members = {
   body: Markdown
   slug: string
   rootPath: string
+  dateStr: string
 }
 
 export type News = {
@@ -57,6 +59,7 @@ export type News = {
   body: Markdown
   slug: string
   rootPath: string
+  dateStr: string
 }  
 
 /** Nested types */
@@ -73,6 +76,13 @@ export type DocumentTypeNames = 'Blog' | 'Members' | 'News'
 export type NestedTypes = never
 export type NestedTypeNames = never
 
+export type DataExports = {
+  allDocuments: DocumentTypes[]
+  allBlogs: Blog[]
+  allNews: News[]
+  allMembers: Members[]
+}
+
 
 export interface ContentlayerGenTypes {
   documentTypes: DocumentTypes
@@ -82,6 +92,7 @@ export interface ContentlayerGenTypes {
   nestedTypeMap: NestedTypeMap
   nestedTypeNames: NestedTypeNames
   allTypeNames: AllTypeNames
+  dataExports: DataExports
 }
 
 declare global {

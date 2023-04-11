@@ -9,6 +9,17 @@ import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 import remarkToc from 'remark-toc';
 
+const defaultImage = 'https://www.tuatmcc.com/images/wordmark-logo-image.png';
+
+const parseOgImage = (src, rootPath) => {
+	const remoteBase = 'https://raw.githubusercontent.com/tuatmcc/hp-md-content/main';
+	console.log(src);
+	if (!src) return defaultImage;
+	else if (src.startsWith('http')) return src;
+	else if (src.startsWith('./')) return `${remoteBase}/${rootPath}/${src.slice(2)}`;
+	else return defaultImage;
+};
+
 const generate = (documentType) =>
 	defineDocumentType(() => ({
 		name: documentType.charAt(0).toUpperCase() + documentType.slice(1),
@@ -27,6 +38,7 @@ const generate = (documentType) =>
 			},
 			img: {
 				type: 'string',
+				resolve: (doc) => encodeURI(parseOgImage(doc._raw.img, doc._raw.flattenedPath)),
 			},
 			tags: {
 				type: 'list',
@@ -44,6 +56,10 @@ const generate = (documentType) =>
 			rootPath: {
 				type: 'string',
 				resolve: (doc) => doc._raw.flattenedPath,
+			},
+			dateStr: {
+				type: 'string',
+				resolve: (doc) => doc.date.replace(/T.*/, ''),
 			},
 		},
 	}));
@@ -86,7 +102,6 @@ export default makeSource({
 				rehypeAutoLinkHeadings,
 				{
 					behavior: 'append',
-					className: ['anchor'],
 				},
 			],
 		],

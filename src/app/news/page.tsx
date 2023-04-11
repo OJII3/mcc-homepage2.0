@@ -6,7 +6,7 @@ import styles from './style.module.css';
 
 import { allNews } from 'contentlayer/generated';
 import { Navbar } from '~/components/Navbar';
-import { BaseImage } from '~/components/ui/BaseImage';
+import { BasicImage } from '~/components/ui/BasicImage';
 import { Footer } from '~/components/ui/Footer';
 
 export const metadata: Metadata = {
@@ -19,46 +19,53 @@ const NewsListPage: FC = () => {
 	return (
 		<>
 			<Navbar />
-			<BaseImage
+			<BasicImage
 				alt=""
-				src="/images/abstract-tech-image-6.webp"
+				src="/images/abstract-tech-image-4.webp"
 				width={1920}
 				height={1280}
 				role="presentation"
 				className={styles.background}
 				fallback
 			/>
-			<header>
+			<header className={styles.header}>
 				<div className={styles.headerContent}>
-					<h1 className={styles.headerTitle}>NEWS</h1>
-					<h2 className={styles.headerSubTitle}>ブログ</h2>
+					<h1 className={styles.headerTitle}>News</h1>
+					<div className={styles.typeWriterContainer}>
+						<h2 className={styles.headerSubTitle}>MCCからのお知らせ</h2>
+					</div>
 				</div>
 			</header>
-			<main>
+
+			<main className={styles.main}>
 				<div className={styles.mainContent}>
-					<div className={styles.list}>
+					<ul className={styles.list}>
 						{allNews.map((post, _index) => {
 							return (
-								<Link href={post.rootPath} key={post.rootPath} className={styles.listItem}>
-									<BaseImage
-										className={styles.image}
-										src={post.img || '/images/wordmark.svg'}
-										alt={post.title}
-										width={350}
-										height={200}
-										fallback
-									/>
-									<div className={styles.text}>
-										<h2 className={styles.title}>{post.title}</h2>
-										<div className={styles.details}>
-											{post.date && <div className={styles.date}>{post.date}</div>}
-											{post.author && <div className={styles.author}>@ {post.author}</div>}
+								<li key={post.rootPath} className={styles.listItem}>
+									<Link href={post.rootPath} className={styles.link}>
+										<BasicImage
+											className={styles.image}
+											src={post.img || '/images/wordmark-logo-image.svg'}
+											alt={post.title}
+											width={350}
+											height={200}
+											fallback
+										/>
+										<div className={styles.text}>
+											<h2 className={styles.title}>{post.title}</h2>
+											<div className={styles.details}>
+												{post.date && (
+													<div className={styles.date}>{post.date.replace(/T.+/, '')}</div>
+												)}
+												{post.author && <div className={styles.author}>@ {post.author}</div>}
+											</div>
 										</div>
-									</div>
-								</Link>
+									</Link>
+								</li>
 							);
 						})}
-					</div>
+					</ul>
 				</div>
 			</main>
 

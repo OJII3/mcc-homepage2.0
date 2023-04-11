@@ -4,12 +4,12 @@
   display: flex;
   flex-direction: column;
   gap: 32px;
-  padding: 32px;
+  padding: 64px 32px 32px;
   margin-top: 64px;
-  background: var(--color-footer-background);
+  background: var(--color-gray-400);
 
   &._semitransparent {
-    background: linear-gradient(transparent, var(--color-footer-background));
+    background: linear-gradient(transparent, var(--color-gray-400));
   }
 
   & .wordmarkLogo {
